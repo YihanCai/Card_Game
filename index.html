@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>记忆翻牌游戏</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>记忆翻牌</h1>
+    </header>
+
+    <div class="game-info">
+      <div class="info-item">
+        <span class="info-label">步数</span>
+        <span id="moves" class="info-value">0</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">用时</span>
+        <span id="timer" class="info-value">00:00</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">配对</span>
+        <span id="matches" class="info-value">0 / 8</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="resetBtn">重新开始</button>
+    </div>
+
+    <div id="gameBoard" class="game-board"></div>
+  </div>
+
+  <div id="victoryOverlay" class="overlay hidden">
+    <div class="overlay-content">
+      <h2>恭喜通关！</h2>
+      <canvas id="victoryCanvas" width="300" height="220"></canvas>
+      <p>步数: <span id="finalMoves">0</span></p>
+      <p>用时: <span id="finalTime">00:00</span></p>
+      <button id="playAgainBtn">再玩一次</button>
+    </div>
+  </div>
+
+  <script src="js/game.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/victory-anim.js"></script>
+</body>
+</html>

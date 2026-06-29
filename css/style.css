@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  letter-spacing: 4px;
+  text-shadow: 0 0 20px rgba(100, 100, 255, 0.5);
+  margin-bottom: 20px;
+}
+
+.game-info {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px 20px;
+  min-width: 90px;
+  backdrop-filter: blur(4px);
+}
+
+.info-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  margin-bottom: 24px;
+}
+
+#resetBtn,
+#playAgainBtn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  color: #fff;
+  padding: 10px 32px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 1px;
+}
+
+#resetBtn:hover,
+#playAgainBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+#resetBtn:active,
+#playAgainBtn:active {
+  transform: translateY(0);
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.card {
+  aspect-ratio: 3 / 4;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+  border-radius: 12px;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card.matched {
+  transform: rotateY(180deg);
+}
+
+.card.matched {
+  cursor: default;
+}
+
+.card.matched .card-front {
+  box-shadow: 0 0 15px rgba(100, 255, 100, 0.6);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+}
+
+.card-back {
+  background: linear-gradient(145deg, #667eea, #764ba2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card-back::after {
+  content: '?';
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+}
+
+.card-front {
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  transform: rotateY(180deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  user-select: none;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  backdrop-filter: blur(6px);
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.overlay-content {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 40px 50px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.overlay-content h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#victoryCanvas {
+  display: block;
+  margin: 10px auto;
+  border-radius: 12px;
+}
+
+.overlay-content p {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #ddd;
+}
+
+.overlay-content button {
+  margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .game-info {
+    gap: 12px;
+  }
+
+  .info-item {
+    padding: 8px 12px;
+    min-width: 70px;
+  }
+
+  .game-board {
+    gap: 8px;
+    max-width: 360px;
+  }
+
+  .card-face {
+    font-size: 1.8rem;
+  }
+
+  .card-back::after {
+    font-size: 1.4rem;
+  }
+}

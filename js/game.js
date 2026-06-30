@@ -1,6 +1,14 @@
-const ICONS = ['🎮', '🎯', '🎪', '🎨', '🎵', '🎸', '🎲', '🚀', '🌈', '🦄', '🍕', '🎬', '🏆', '🧩', '💎', '🌺'];
+const ICONS = ['🎮', '🎯', '🎪', '🎨', '🎵', '🎸', '🎲', '🚀', '🌈', '🦄', '🍕', '🎬', '🏆', '🧩', '💎', '🌺', '🐱', '🐶', '🐼', '🦊', '🐸', '🐧', '🍀', '🌟', '🔥', '⚡'];
 
-const TOTAL_PAIRS = 8;
+const DIFFICULTIES = {
+  easy:   { pairs: 6,  cols: 4, label: '简单' },
+  medium: { pairs: 8,  cols: 4, label: '中等' },
+  hard:   { pairs: 12, cols: 6, label: '困难' },
+  challenge: { pairs: 18, cols: 6, label: '挑战' },
+};
+
+let currentDiff = 'medium';
+let totalPairs = DIFFICULTIES[currentDiff].pairs;
 let cards = [];
 let flippedCards = [];
 let matchedPairs = 0;
@@ -15,6 +23,7 @@ const playAgainBtn = document.getElementById('playAgainBtn');
 const victoryOverlay = document.getElementById('victoryOverlay');
 const finalMoves = document.getElementById('finalMoves');
 const finalTime = document.getElementById('finalTime');
+const timerEl = document.getElementById('timer');
 
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -24,8 +33,18 @@ function shuffle(arr) {
   return arr;
 }
 
+function setDifficulty(diff) {
+  currentDiff = diff;
+  totalPairs = DIFFICULTIES[diff].pairs;
+  document.querySelectorAll('.diff-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.diff === diff);
+  });
+  board.style.gridTemplateColumns = `repeat(${DIFFICULTIES[diff].cols}, 1fr)`;
+  initGame();
+}
+
 function initGame() {
-  const chosenIcons = shuffle([...ICONS]).slice(0, TOTAL_PAIRS);
+  const chosenIcons = shuffle([...ICONS]).slice(0, totalPairs);
   const deck = shuffle([...chosenIcons, ...chosenIcons]);
 
   cards = deck.map((icon, index) => ({
@@ -125,11 +144,11 @@ function checkMatch() {
 
 function updateStats() {
   movesEl.textContent = moves;
-  matchesEl.textContent = `${matchedPairs} / ${TOTAL_PAIRS}`;
+  matchesEl.textContent = `${matchedPairs} / ${totalPairs}`;
 }
 
 function checkWin() {
-  if (matchedPairs === TOTAL_PAIRS) {
+  if (matchedPairs === totalPairs) {
     stopTimer();
     finalMoves.textContent = moves;
     finalTime.textContent = timerEl.textContent;
@@ -141,7 +160,6 @@ function checkWin() {
 
 let timerInterval = null;
 let seconds = 0;
-const timerEl = document.getElementById('timer');
 
 function startTimer() {
   if (timerInterval !== null) return;
@@ -166,6 +184,15 @@ function formatTime(sec) {
   const s = String(sec % 60).padStart(2, '0');
   return `${m}:${s}`;
 }
+
+board.style.gridTemplateColumns = `repeat(4, 1fr)`;
+
+document.querySelectorAll('.diff-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (typeof playClick === 'function') playClick();
+    setDifficulty(btn.dataset.diff);
+  });
+});
 
 resetBtn.addEventListener('click', () => { if (typeof playClick === 'function') playClick(); initGame(); });
 playAgainBtn.addEventListener('click', () => { if (typeof playClick === 'function') playClick(); initGame(); });

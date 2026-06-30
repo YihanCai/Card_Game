@@ -31,6 +31,13 @@
       <button id="resetBtn">重新开始</button>
     </div>
 
+    <div class="difficulty">
+      <button class="diff-btn" data-diff="easy">简单 3×4</button>
+      <button class="diff-btn active" data-diff="medium">中等 4×4</button>
+      <button class="diff-btn" data-diff="hard">困难 4×6</button>
+      <button class="diff-btn" data-diff="challenge">挑战 6×6</button>
+    </div>
+
     <div id="gameBoard" class="game-board"></div>
   </div>
 
@@ -40,6 +47,7 @@
       <canvas id="victoryCanvas" width="300" height="220"></canvas>
       <p>步数: <span id="finalMoves">0</span></p>
       <p>用时: <span id="finalTime">00:00</span></p>
+      <p id="bestScoreLine" style="display:none">最佳纪录: <span id="finalBest">-</span></p>
       <button id="playAgainBtn">再玩一次</button>
     </div>
   </div>

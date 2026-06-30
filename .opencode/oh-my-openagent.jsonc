@@ -1,0 +1,48 @@
+{
+  "agents": {
+    "sisyphus": {
+      "model": "SenseNova/deepseek-v4-flash",
+      "fallback_models": ["opencode/big-pickle", "Agnes/agnes-2.0-flash"]
+    },
+    "metis": {
+      "model": "opencode/big-pickle",
+      "fallback_models": ["SenseNova/deepseek-v4-flash"]
+    },
+    "prometheus": {
+      "model": "SenseNova/deepseek-v4-flash",
+      "fallback_models": ["opencode/big-pickle", "Agnes/agnes-2.0-flash"]
+    },
+    "hephaestus": {
+      "model": "SenseNova/deepseek-v4-flash",
+      "fallback_models": ["opencode/deepseek-v4-flash-free"]
+    },
+    "oracle": {
+      "model": "SenseNova/deepseek-v4-flash",
+      "fallback_models": ["opencode/big-pickle"]
+    },
+    "momus": {
+      "model": "SenseNova/deepseek-v4-flash",
+      "fallback_models": ["Agnes/agnes-2.0-flash", "opencode/big-pickle"]
+    },
+    "atlas": {
+      "model": "Agnes/agnes-2.0-flash",
+      "fallback_models": ["SenseNova/sensenova-6.7-flash-lite"]
+    },
+    "explore": {
+      "model": "Agnes/agnes-2.0-flash",
+      "fallback_models": ["SenseNova/sensenova-6.7-flash-lite", "opencode/north-mini-code-free"]
+    },
+    "librarian": {
+      "model": "Agnes/agnes-2.0-flash",
+      "fallback_models": ["SenseNova/sensenova-6.7-flash-lite", "opencode/north-mini-code-free"]
+    },
+    "multimodal-looker": {
+      "model": "opencode/big-pickle",
+      "fallback_models": ["SenseNova/deepseek-v4-flash"]
+    },
+    "sisyphus-junior": {
+      "model": "Agnes/agnes-2.0-flash",
+      "fallback_models": ["SenseNova/deepseek-v4-flash"]
+    }
+  }
+}
